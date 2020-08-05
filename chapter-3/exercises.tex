@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\noindent \textit{Exercise 3.1} Devise three example tasks of your own that fit into the MDP framework, identifying for each its states, actions, and rewards. Make the three examples as different from each other as possible. The framework is abstract and flexible and can be applied in many different ways. Stretch its limits in some way in at least one of your examples. \\
+\textit{Solution:} \\
+
+\noindent \textit{Exercise 3.2} Is the MDP framework adequate to usefully represent all\ goal-directed learning tasks? Can you think of any clear exceptions? \\
+\textit{Solution:} \\
+
+\noindent \textit{Exercise 3.3} Consider the problem of driving. You could define the actions in terms of the accelerator, steering wheel, and brake, that is, where your body meets the machine. Or you could define them farther out—say, where the rubber meets the road, considering your actions to be tire torques. Or you could define them farther in—say, where your brain meets your body, the actions being muscle twitches to control your limbs. Or you could go to a really high level and say that your actions are your choices of where to drive. What is the right level, the right place to draw the line between agent and environment? On what basis is one location of the line to be preferred over another? Is there any fundamental reason for preferring one location over another, or is it a free choice? \\
+\textit{Solution:} \\
+
+% 3.4
+\noindent \textit{Exercise 3.4} Give a table analogous to that in Example 3.3, but for $p(s^{\prime}, r|s, a)$. It should have columns for $s, a, s^{\prime}, r \text{ and } p(s^{\prime}, r|s,a)$ and a row for every 4-tuple for which $p(s^{\prime}, r,|s,a) > 0$. \\
+\textit{Solution:} \\
+
+% 3.5
+\noindent \textit{Exercise 3.5} The equations in Section 3.1 are for the continuing case and need to be modified (very slightly) to apply to episodic tasks. Show that you know the modifications needed by giving the modified version of (3.3). \\
+\textit{Solution:} Instead of thinking terminal state as "specialized" state in episodic task, terminal state can be considered as "normal" state, which gives different rewards for different outcomes. For example, if an agent is playing a tic-tac-toe, terminal states are either winning or losing the game. Rather than being special state, terminal state gives different reward +5(for example) when the agent wins the game or -5 when the agent loses the game. Thus, equation (3.3) has to incorporate terminal state.
+
+\[ \displaystyle\sum_{s' \in S^{+}} \sum_{r \in R} p(s^{'}, r|s, a) = 1 \text{ for all } s \in S^{+}, a \in A(s)\]
+
+% 3.6
+\noindent \textit{Exercise 3.6} Suppose you treated pole-balancing as an episodic task but also used discounting, with all rewards zero except for -1 upon failure. What then would the return be at each time? How does this return differ from that in the discounted, continuing formulation of this task? \\
+\textit{Solution:} \\
+
+\noindent \textit{Exercise 3.7} Imagine that you are designing a robot to run a maze. You decide to give it a reward of +1 for escaping from the maze and a reward of zero at all other times. The task seems to break down naturally into episodes—the successive runs through the maze—so you decide to treat it as an episodic task, where the goal is to maximize expected total reward (3.7). After running the learning agent for a while, you find that it is showing no improvement in escaping from the maze. What is going wrong? Have you effectively communicated to the agent what you want it to achieve? \\
+\textit{Solution:} \\
+
+% 3.8
+\noindent \textit{Exercise 3.8} Suppose $\gamma = 0.5$ and the following sequence of rewards is received $R_{1} = -1, R_{2} = 2, R_{3} = 6, R_{4} = 3, \text{ and } R_{5} = 2, \text{ with } T = 5$. What are $G_{0} , G_{1} , . . ., G_{5}$ ? Hint: Work backwards. \\
+\begin{align*}
+  G_{5} &= R_{6} + \gamma G_{6} = 0 + 0.5(0) = 0 \\
+  G_{4} &= R_{5} + \gamma G_{5} = 2 + 0.5(0) = 2 \\
+  G_{3} &= R_{4} + \gamma G_{4} = 3 + 0.5(2) = 4 \\
+  G_{2} &= R_{3} + \gamma G_{3} = 6 + 0.5(4) = 8 \\
+  G_{1} &= R_{2} + \gamma G_{2} = 2 + 0.5(8) = 6 \\
+  G_{0} &= R_{1} + \gamma G_{1} = -1 + 0.5(6) = 2 \\
+\end{align*}
+
+% 3.9
+\noindent \textit{Exercise 3.9} Suppose = 0.9 and the reward sequence is $R_{1} = 2$ followed by an infinite sequence of 7s. What are $G_{1}$ and $G_{0}$ ? \\
+\textit{Solution: } The sequence is $2, 7, 7, 7, ...$.\\
+\begin{align*}
+  G_{2} &= R_{3} + \gamma R_{4} + \gamma^{2} R_{5} + ... \\
+        &= 7 + \gamma (7) + \gamma^{2} (7) + ... \\
+        %&= \displaystyle\sum_{k=0}^{\infty} \gamma^{k} * 7 (\text{because } G_{t} = \displaystyle\sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1})\\
+        &= 7 * \displaystyle\sum_{k=0}^{\infty} \gamma^{k} \\
+        %&= 7 * \frac{1}{1-\gamma} (\text{because } \displaystyle\sum_{k=0}^{\infty} \gamma^{k} = \frac{1}{1-\gamma}) \\
+        &= 7 * \frac{1}{1-0.9} \\
+        &= 70 \\ 
+\end{align*}
+$G_{1} = R_{2} + \gamma G_{2} = 7 + 0.9(70) = 70$ \\
+$G_{0} = R_{1} + \gamma G_{1} = 2 + 0.9(70) = 65$ \\
+
+% 3.10
+\noindent \textit{Exercise 3.10} Prove the second equality in (3.10). \\
+\textit{Solution:} \\
+
+% 3.11
+\noindent \textit{Exercise 3.11} If the current state is $S_{t}$, and actions are selected according to stochastic policy $\pi$, then what is the expectation of $R_{t+1}$ in terms of $\pi$ and the four-argument function $p(3.2)$? \\
+\textit{Solution:} \\
+
+% 3.12
+\noindent \textit{Exercise 3.12} Give an equation for $v_{\pi}$ in terms of $q_{\pi}$ and $\pi$. \\
+
+% 3.13
+\noindent \textit{Exercise 3.13} Give an equation for $q_{\pi}$ in terms of $v_{\pi}$ and the four-argument $p$. \\
+
+% 3.14
+\noindent \textit{Exercise 3.14} The Bellman equation (3.14) must hold for each state for the value function $v_{\pi}$ shown in Figure 3.2 (right) of Example 3.5. Show numerically that this equation holds for the center state, valued at +0.7, with respect to its four neighboring states, valued at +2.3, +0.4, 0.4, and +0.7. (These numbers are accurate only to one decimal place.) \\
+\textit{Solution:} \\
+
+% 3.15
+\noindent \textit{Exercise 3.15} In the gridworld example, rewards are positive for goals, negative for running into the edge of the world, and zero the rest of the time. Are the signs of these rewards important, or only the intervals between them? Prove, using (3.8), that adding a constant $c$ to all the rewards adds a constant, $v_{c}$ , to the values of all states, and thus does not affect the relative values of any states under any policies. What is $v_{c}$ in terms of $c$ and $\gamma$? \\
+\textit{Solution:} \\
+
+\end{document}
